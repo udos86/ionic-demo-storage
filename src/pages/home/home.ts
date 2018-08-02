@@ -20,6 +20,21 @@ export class HomePage {
     lastName: null
   };
 
+  testData = [
+    {
+      label: "Eins",
+      category: "Work"
+    },
+    {
+      label: "Zwei",
+      category: "Sport"
+    },
+    {
+      label: "Drei",
+      category: "Work"
+    }
+  ]
+
   constructor(public navCtrl: NavController, public nativeStorage: NativeStorage, @Inject(STORAGE_KEY) private STORAGE_KEY: string) {
 
   }
@@ -29,5 +44,18 @@ export class HomePage {
     this.nativeStorage.setItem(this.STORAGE_KEY, this.formModel)
       .then(() => console.log("Succesfully stored form data"))
       .catch(error => console.error("error while storing form data", error));
+  }
+
+  getClass(category: string): string {
+
+    if (category === "Work") {
+      return "category-work";
+
+    } else if (category === "Sport") {
+      return "category-sport";
+
+    } else {
+      return "";
+    }
   }
 }
